@@ -1,3 +1,4 @@
+import logo from './logo.svg'
 import './App.css';
 import React, { useState, useCallback } from "react";
 
@@ -75,10 +76,9 @@ function App() {
 
   const onSubmitAudioFile = useCallback(() => {
     if (audioUrl) {
-      alert("녹음된 오디오 정보");
       alert(URL.createObjectURL(audioUrl));
-      alert(audioUrl);
       console.log(URL.createObjectURL(audioUrl)); // 출력된 링크에서 녹음된 오디오 확인 가능
+      window.open(URL.createObjectURL(audioUrl), "_blank");
     }
     // File 생성자를 사용해 파일로 변환
     const sound = new File([audioUrl], "soundBlob", { lastModified: new Date().getTime(), type: "audio" });
@@ -86,10 +86,15 @@ function App() {
   }, [audioUrl]);
 
   return (
-    <>
-      <button onClick={onRec ? onRecAudio : offRecAudio}>녹음</button>
-      <button onClick={onSubmitAudioFile}>결과 확인</button>
-    </>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          <button onClick={onRec ? onRecAudio : offRecAudio}>녹음</button>
+          <button onClick={onSubmitAudioFile}>결과 확인</button>
+        </p>
+      </header>
+    </div>
   );
 }
 
