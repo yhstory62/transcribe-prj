@@ -75,6 +75,9 @@ function App() {
 
   const onSubmitAudioFile = useCallback(() => {
     if (audioUrl) {
+      alert("녹음된 오디오 정보");
+      alert(URL.createObjectURL(audioUrl));
+      alert(audioUrl);
       console.log(URL.createObjectURL(audioUrl)); // 출력된 링크에서 녹음된 오디오 확인 가능
     }
     // File 생성자를 사용해 파일로 변환
